@@ -16,7 +16,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         ("Permissions", {"fields": ("is_staff", "is_active")}),
-        ("General", {"fields": ("first_name", "last_name", "avatar", "groups")}),
+        ("General", {"fields": ("first_name", "last_name", "groups")}),
     )
     add_fieldsets = (
         (
@@ -26,7 +26,7 @@ class CustomUserAdmin(UserAdmin):
                 "fields": ("email", "password1", "password2", "is_staff", "is_active"),
             },
         ),
-        ("General", {"fields": ("first_name", "last_name", "avatar", "groups")}),
+        ("General", {"fields": ("first_name", "last_name", "groups")}),
         ("Permissions", {"fields": ("is_staff", "is_active")}),
     )
     ordering = ("email",)

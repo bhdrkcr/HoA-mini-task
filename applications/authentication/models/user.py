@@ -57,10 +57,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
-
-    @property
-    def image_url(self):
-        if self.avatar and hasattr(self.avatar, "url"):
-            return self.avatar.url
-        else:
-            return None
