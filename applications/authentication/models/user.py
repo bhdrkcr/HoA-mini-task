@@ -1,7 +1,3 @@
-# Standard Library
-import os
-import uuid
-
 # Django
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
@@ -47,8 +43,16 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
+    is_verified = models.BooleanField(
+        _("verified"),
+        default=False,
+        help_text=_("If the user accomplished email verification"),
+    )
+    id = models.AutoField(primary_key=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
     objects = UserManager()
 
     def __str__(self):
@@ -60,5 +64,3 @@ class User(AbstractUser):
             return self.avatar.url
         else:
             return None
-
-    id = models.AutoField(primary_key=True)

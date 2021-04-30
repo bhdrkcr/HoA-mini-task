@@ -1,4 +1,4 @@
-"""hoaminitask URL Configuration
+"""api_of_mugs URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -14,10 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # Django
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+# Third Party
+from rest_framework.routers import DefaultRouter
+
+# Local Folder
+from .views import RegistrationViewSet, UserViewset
+
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r"users", UserViewset)
+router.register(r"registrations", RegistrationViewSet)
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("authentication.urls")),
+    path("", include(router.urls)),
 ]
