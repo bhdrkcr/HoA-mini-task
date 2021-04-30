@@ -25,6 +25,8 @@ from rest_framework.routers import DefaultRouter
 # Local Folder
 from .views import RegistrationViewSet, UserViewset
 
+app_name = "authentication"
+
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r"users", UserViewset)
