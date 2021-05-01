@@ -39,7 +39,7 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     lookup_field = "verification_key"
 
     @action(detail=True)
-    def validation(self, request, *args, **kwargs):
+    def verify(self, request, *args, **kwargs):
         instance = self.get_object()
         instance.user.is_verified = True
         instance.user.save()
