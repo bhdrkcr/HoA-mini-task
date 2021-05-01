@@ -4,7 +4,7 @@ A mini task about registration, login and admin panel with drf
 
 ## Setup
 
-Make sure you have python == 3.9.2 installed and set as enviroment variable.
+Make sure you have python == 3.9.2 installed and set as environment variable with postgresql13 create a database and user with all privileges on database
 
 - clone project to your computer
 - create a venv and activate it
