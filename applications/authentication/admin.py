@@ -5,11 +5,19 @@ from django.contrib.auth.admin import UserAdmin
 # Local Folder
 from .models import User
 
+
 # Register your models here.
+class VerifiedUserProxy(User):
+    class Meta:
+        proxy = True
 
 
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
+class UnverifiedUserProxy(User):
+    class Meta:
+        proxy = True
+
+
+class Users(UserAdmin):
     model = User
     list_display = ["email", "is_staff", "is_active"]
     list_filter = ("email", "is_staff", "is_active")
@@ -30,3 +38,15 @@ class CustomUserAdmin(UserAdmin):
         ("Permissions", {"fields": ("is_staff", "is_active")}),
     )
     ordering = ("email",)
+
+
+@admin.register(VerifiedUserProxy)
+class VerifiedUsers(Users):
+    def get_queryset(self, request):
+        return self.model.objects.filter(is_verified=True)
+
+
+@admin.register(UnverifiedUserProxy)
+class UnverifiedUsers(Users):
+    def get_queryset(self, request):
+        return self.model.objects.filter(is_verified=False)
