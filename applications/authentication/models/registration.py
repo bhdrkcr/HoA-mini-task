@@ -41,7 +41,7 @@ class Registration(models.Model):
             _("Verification for email from House of Apps"),
             _("click here to verify: ")
             + reverse(
-                "authentication:registration-validation",
+                "authentication:registration-verify",
                 kwargs={"verification_key": self.verification_key},
             ),
             "app@gmail.com",
