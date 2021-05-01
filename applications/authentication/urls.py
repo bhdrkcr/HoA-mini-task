@@ -23,15 +23,30 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 # Local Folder
-from .views import RegistrationViewSet, UserViewset
+from .views import (
+    ObtainAuthTokenWithVerificationCheck,
+    RegistrationRetrieveAPIView,
+    UserDetailRetrieveAPIView,
+    UserViewset,
+)
 
 app_name = "authentication"
 
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r"users", UserViewset)
-router.register(r"registrations", RegistrationViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path(
+        "registrations/<uuid:verification_key>/verify",
+        RegistrationRetrieveAPIView.as_view(),
+        name="registration-verify",
+    ),
+    path(
+        "profile/",
+        UserDetailRetrieveAPIView.as_view(),
+        name="profile",
+    ),
+    path("api-token-auth/", ObtainAuthTokenWithVerificationCheck.as_view()),
 ]

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "authentication",
     "rest_framework",
+    "rest_framework.authtoken",
     "captcha",
 ]
 
@@ -130,3 +131,10 @@ AUTH_USER_MODEL = "authentication.User"
 
 RECAPTCHA_PUBLIC_KEY = config("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = config("RECAPTCHA_PRIVATE_KEY")
+
+# rest stuff
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
