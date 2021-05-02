@@ -34,7 +34,7 @@ app_name = "authentication"
 
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
-router.register(r"users", UserViewset)
+router.register(r"users", UserViewset, basename="users")
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -48,5 +48,9 @@ urlpatterns = [
         UserDetailRetrieveAPIView.as_view(),
         name="profile",
     ),
-    path("api-token-auth/", ObtainAuthTokenWithVerificationCheck.as_view()),
+    path(
+        "api-token-auth/",
+        ObtainAuthTokenWithVerificationCheck.as_view(),
+        name="api-token-auth",
+    ),
 ]
