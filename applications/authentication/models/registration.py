@@ -3,15 +3,13 @@ import uuid
 
 # Django
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.mail import send_mail
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 __all__ = ["Registration"]
-
-
-MAXIMUM_VALID_DAYS = 3
 
 
 def create_verification_key():
@@ -37,9 +35,12 @@ class Registration(models.Model):
     )
 
     def send_registration_mail(self):
+        current_site = Site.objects.get_current()
+
         send_mail(
             _("Verification for email from House of Apps"),
             _("click here to verify: ")
+            + current_site.domain
             + reverse(
                 "authentication:registration-verify",
                 kwargs={"verification_key": self.verification_key},
