@@ -1,6 +1,7 @@
 # Django
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 # Third Party
@@ -29,7 +30,7 @@ class CustomLoginForm(AuthenticationForm):
     def confirm_login_allowed(self, user):
         super().confirm_login_allowed(user)
         if not user.is_staff:
-            raise self.ValidationError(
+            raise ValidationError(
                 self.error_messages["invalid_login"],
                 code="invalid_login",
                 params={"username": self.username_field.verbose_name},
