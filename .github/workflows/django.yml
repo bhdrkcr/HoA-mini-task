@@ -34,4 +34,4 @@ jobs:
         echo ALLOWED_HOSTS=${{ env.ALLOWED_HOSTS }} >> .env
     - name: Run Tests
       run: |
-        py.test
+        python manage.py test authentication --settings configuration.settings.test
