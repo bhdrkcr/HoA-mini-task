@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Local Folder
 from .forms import CustomLoginForm
+from .models import Registration, User
 
 __all__ = [
     "CustomLoginAdminSite",
@@ -71,3 +72,6 @@ class VerifiedUsers(Users):
 class UnverifiedUsers(Users):
     def get_queryset(self, request):
         return self.model.objects.filter(is_verified=False)
+
+
+site.register(Registration)
