@@ -32,7 +32,7 @@ class UserViewset(viewsets.ModelViewSet):
     http_method_names = ["post"]
 
     def create(self, request, *args, **kwargs):
-        if User.objects.filter(email=request.POST.get("email")).exists():
+        if User.objects.filter(email=request.data.get("email")).exists():
             return Response(status=status.HTTP_409_CONFLICT)
         return super(UserViewset, self).create(request, *args, **kwargs)
 

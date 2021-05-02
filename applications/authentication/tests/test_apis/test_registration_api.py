@@ -56,7 +56,7 @@ class TestRegistrationApi(APITestCase):
         }
         self.client.post(url, data, format="json")
         double_response = self.client.post(url, data, format="json")
-        self.assertEqual(double_response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(double_response.status_code, status.HTTP_409_CONFLICT)
         self.assertEqual(User.objects.count(), 1)
 
 
