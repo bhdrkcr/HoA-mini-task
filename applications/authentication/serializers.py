@@ -12,6 +12,11 @@ from rest_framework import serializers
 # Local Folderry
 from .models import Registration, User
 
+__all__ = [
+    "UserSerializer",
+    "RegistrationSerializer",
+]
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

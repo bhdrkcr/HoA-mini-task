@@ -2,11 +2,18 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
 from django.contrib.auth.admin import UserAdmin
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # Local Folder
 from .forms import CustomLoginForm
-from .models import User
+
+__all__ = [
+    "CustomLoginAdminSite",
+    "VerifiedUserProxy",
+    "Users",
+    "VerifiedUsers",
+    "UnverifiedUsers",
+]
 
 
 class CustomLoginAdminSite(AdminSite):

@@ -1,13 +1,14 @@
 # Django
-from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
-from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 
 # Third Party
 from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV2Checkbox
+
+__all__ = [
+    "CustomLoginForm",
+]
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -28,7 +29,7 @@ class CustomLoginForm(AuthenticationForm):
     def confirm_login_allowed(self, user):
         super().confirm_login_allowed(user)
         if not user.is_staff:
-            raise ValidationError(
+            raise self.ValidationError(
                 self.error_messages["invalid_login"],
                 code="invalid_login",
                 params={"username": self.username_field.verbose_name},
