@@ -272,3 +272,4 @@ Temporary Items
 .vscode/launch.json
 .vscode/settings.json
 .env
+.env.db
