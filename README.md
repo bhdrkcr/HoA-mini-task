@@ -1,6 +1,6 @@
-# HoA-mini-task
+# drf custom login
 
-A mini task about registration, login and admin panel with drf
+A mini project about registration, login and admin panel with drf
 
 ## Setup
 
@@ -10,7 +10,7 @@ Make sure you have python == 3.9.2 installed and set as environment variable wit
 - create a venv and activate it
 
 ```bash
-cd hoa-mini-task
+cd drf-custom-login
 python3 -m venv env
 source en/bin/activate
 ```
